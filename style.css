@@ -1,13 +1,15 @@
 :root {
-    --primary-bg: #111827; 
-    --secondary-bg: #1f2937;
-    --card-bg: #374151; 
-    --text-primary: #f3f4f6;
-    --text-secondary: #9ca3af;
-    --accent-color: #3b82f6; 
-    --border-color: #4b5563;
-    --shadow-color: rgba(0, 0, 0, 0.2);
-    --input-bg: #4b5563;
+    --primary-bg: #0f172a; 
+    --secondary-bg: #1e293b;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --accent-color: #38bdf8; 
+    --border-color: #334155;
+    --shadow-color: rgba(0, 0, 0, 0.35);
+    --input-bg: #334155;
+    --input-focus-shadow: hsla(205, 90%, 55%, 0.25);
+    --gradient-start: var(--accent-color);
+    --gradient-end: #8b5cf6;
 }
 
 * {
@@ -24,28 +26,35 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 20px;
     background-image: 
-        radial-gradient(circle at 10% 20%, var(--accent-color, transparent) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, var(--secondary-bg, transparent) 0%, transparent 25%);
+        radial-gradient(circle at 5% 15%, hsla(200, 70%, 40%, 0.2) 0%, transparent 25%),
+        radial-gradient(circle at 95% 85%, hsla(260, 50%, 40%, 0.15) 0%, transparent 30%);
     background-attachment: fixed;
 }
 
 .converter-container {
     width: 100%;
-    max-width: 480px;
-    text-align: center;
+    max-width: 500px;
+    padding: 35px 40px;
+    background-color: var(--secondary-bg);
+    border-radius: 20px;
+    box-shadow: 0 20px 50px var(--shadow-color);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 20px; 
 }
 
 header {
-    margin-bottom: 40px;
+    text-align: center;
 }
 
 header h1 {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     font-weight: 700;
     margin-bottom: 8px;
-    background: linear-gradient(90deg, var(--accent-color), #a855f7);
+    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -53,50 +62,45 @@ header h1 {
 }
 
 header p {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--text-secondary);
     font-weight: 500;
 }
 
 header .arrow {
     color: var(--accent-color);
-    font-weight: 700;
+    font-weight: 600;
 }
 
-.converter-card {
-    background-color: var(--card-bg);
-    padding: 30px 35px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px var(--shadow-color);
-    border: 1px solid var(--border-color);
+.converter-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .input-group {
-    margin-bottom: 25px;
     text-align: left;
-}
-
-.input-group:last-of-type {
-    margin-bottom: 0;
 }
 
 .input-group label {
     display: block;
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-size: 0.8rem;
+    font-weight: 600;
     color: var(--text-secondary);
     margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
 }
 
 .input-group input[type="number"] {
     width: 100%;
-    padding: 14px 18px;
-    font-size: 1.1rem;
+    padding: 16px 18px;
+    font-size: 1.25rem;
     font-weight: 500;
     color: var(--text-primary);
     background-color: var(--input-bg);
     border: 1px solid var(--border-color);
-    border-radius: 12px;
+    border-radius: 10px;
     outline: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -107,7 +111,7 @@ header .arrow {
 
 .input-group input[type="number"]:focus {
     border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 0 0 4px var(--input-focus-shadow);
 }
 
 .input-group input[type="number"]::-webkit-outer-spin-button,
@@ -124,31 +128,35 @@ header .arrow {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 15px 0;
+    padding: 5px 0;
 }
 
 .icon-swap svg {
     color: var(--accent-color);
     transform: rotate(90deg);
-    transition: transform 0.3s ease-in-out;
+    opacity: 0.8;
 }
-
-.converter-card:focus-within .icon-swap svg {
-     transform: rotate(90deg) scale(1.1);
-}
-
 
 footer {
-    margin-top: 30px;
-    font-size: 0.85rem;
+    text-align: center;
+    font-size: 0.8rem;
     color: var(--text-secondary);
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+    opacity: 0.8;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 540px) {
+    .converter-container {
+        margin: 15px;
+        padding: 30px 25px;
+        gap: 25px;
+    }
     header h1 {
         font-size: 2rem;
     }
-    .converter-card {
-        padding: 25px 20px;
+    .input-group input[type="number"] {
+        padding: 14px 16px;
+        font-size: 1.15rem;
     }
 }
